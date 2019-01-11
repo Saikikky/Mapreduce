@@ -72,6 +72,11 @@ public class FlowCount {
 		job.setMapperClass(FlowCountMapper.class);
 		job.setReducerClass(FlowCountReducer.class);
 		
+		// 指定自定义的数据分区器
+		job.setPartitionerClass(ProvincePartitioner.class);
+		// 同时指定相应“分区”数量的reducetask
+		job.setNumReduceTasks(5);
+		
 		// mapper输入数据类型
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(FlowBean.class);
